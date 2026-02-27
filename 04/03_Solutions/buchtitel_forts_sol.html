@@ -44,10 +44,9 @@
     <h1>Informatik Fachliteratur</h1>
     <p>Datenquelle: Open Library API (Subject: Web Programming)</p>
 
-    <!-- Optional: URL dynamisch erstellen durch Benutzereingabe
+    <!-- Optional: URL dynamisch erstellen durch Benutzereingabe -->
     <input type="text" id="subjectInput" placeholder="Thema eingeben">
     <button onclick="loadBooks()">Laden</button>
-    -->
 
     <table id="bookTable">
       <thead>
@@ -64,11 +63,12 @@
   </div>
 
   <script>
-    function fetchBooks() {
-      // Wir suchen nach dem Subject "web_programming"
+    function loadBooks() {
+      /* Wir suchen nach dem Subject "web_programming"
       const url = 'https://openlibrary.org/subjects/web_programming.json?limit=15';
+      */
 
-      /* Optional: URL dynamisch erstellen durch Benutzereingabe
+      // URL dynamisch erstellen durch Benutzereingabe
       const subject =
         document.getElementById("subjectInput").value;
 
@@ -76,7 +76,6 @@
         "https://openlibrary.org/subjects/"
         + subject +
         ".json?limit=15";
-      */
 
       fetch(url)
         .then(response => response.json())
@@ -127,7 +126,7 @@
       });
     }
 
-    fetchBooks();
+    loadBooks();
   </script>
 </body>
 </html>
