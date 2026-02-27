@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informatik Bücher - Open Library API</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      margin: 50px;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #2672e4;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Informatik Fachliteratur</h1>
+    <p>Datenquelle: Open Library API (Subject: Web Programming)</p>
+
+    <!-- Optional: URL dynamisch erstellen durch Benutzereingabe
+    <input type="text" id="subjectInput" placeholder="Thema eingeben">
+    <button onclick="loadBooks()">Laden</button>
+    -->
+
+    <table id="bookTable">
+      <thead>
+        <tr>
+          <th>Titel</th>
+          <th>Autor(en)</th>
+          <th>Erscheinungsjahr</th>
+          <th>Cover</th>
+        </tr>
+      </thead>
+      <tbody>
+        </tbody>
+    </table>
+  </div>
+
+  <script>
+    function fetchBooks() {
+      // Wir suchen nach dem Subject "web_programming"
+      const url = 'https://openlibrary.org/subjects/web_programming.json?limit=15';
+
+      /* Optional: URL dynamisch erstellen durch Benutzereingabe
+      const subject =
+        document.getElementById("subjectInput").value;
+
+      const url =
+        "https://openlibrary.org/subjects/"
+        + subject +
+        ".json?limit=15";
+      */
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          // Die Bücher liegen im Array "works"
+          displayBooks(data.works);
+        })
+        .catch(error => {
+          console.error('Fehler:', error);
+          alert('Bücher konnten nicht geladen werden.');
+        });
+    }
+
+    function displayBooks(books) {
+      const tableBody = document.querySelector('#bookTable tbody');
+      tableBody.innerHTML = ''; 
+
+      books.forEach(book => {
+        const row = document.createElement('tr');
+
+        // 1. Titel
+        const titleCell = document.createElement('td');
+        titleCell.innerText = book.title;
+        row.appendChild(titleCell);
+
+        // 2. Autor (Achtung: authors ist ein Array von Objekten)
+        const authorCell = document.createElement('td');
+        // Wir verbinden alle Autorennamen mit einem Komma, falls es mehrere gibt
+        const authorNames = book.authors.map(a => a.name).join(', ');
+        authorCell.innerText = authorNames || 'Unbekannt';
+        row.appendChild(authorCell);
+
+        // 3. Erscheinungsjahr
+        const yearCell = document.createElement('td');
+        yearCell.innerText = book.first_publish_year || 'N/A';
+        row.appendChild(yearCell);
+
+        // 4. Cover
+        const coverCell = document.createElement("td");
+        if (book.cover_id) {
+          const img = document.createElement("img");
+          img.src = "https://covers.openlibrary.org/b/id/" + book.cover_id + "-M.jpg";
+          coverCell.appendChild(img);
+        }
+        row.appendChild(coverCell);
+
+        tableBody.appendChild(row);
+      });
+    }
+
+    fetchBooks();
+  </script>
+</body>
+</html>

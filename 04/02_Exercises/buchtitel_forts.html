@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Library – Web Programming Bücher</title>
+</head>
+
+<body>
+
+    <h1>📚 Informatik Fachliteratur</h1>
+    <p>Datenquelle: Open Library API (Subject: Web Programming)</p>
+
+    <!-- 
+        *******************
+         Aufgabe 1:
+        ********************
+        - Erstellen Sie eine Tabelle mit den Spaltenheadern:
+            "Titel", "Autor(en)", "Erscheinungsjahr", "Cover"
+        - Erstellen Sie einen leeren TableBody (tbody) mit der ID "bookTableBody".
+    -->
+
+
+    <script>
+
+        /**********************
+         * Aufgabe 2: API-Funktion erstellen
+         * ********************
+         * - Erstellen Sie eine Funktion: function loadBooks() { }
+         * - Verwenden Sie wieder den Fetch Request zur Open Library API:
+         *   https://openlibrary.org/subjects/web_programming.json?limit=15
+         * - Greifen Sie wieder auf den Titel im Array "works" zu (letzte Übung).
+         * - Erweitern Sie nun mit forEach(), um alle Titel auszugeben.
+         */
+
+
+        /**********************
+         * Aufgabe 3: Anzeige-Funktion auslagern
+         * ********************
+         * - Erstellen Sie nun eine eigene Funktion: function displayBooks(items) { }
+         * - Die Funktion soll Titel, Autor und Erscheinungsjahr für jedes Buch anzeigen.
+         * - Fügen Sie für jedes Buch eine neue Tabellenzeile in den tbody ein.
+         * - Beachten Sie:
+         *      → authors ist ein Array
+         *      → mit map und join können Sie mehrere Autoren ausgeben
+         */
+
+
+        /*********************
+        * Aufgabe 4: Cover anzeigen
+        * ********************
+        *   Beachten Sie:
+        *      → cover_id kann fehlen
+        * - Erweitern Sie die Tabelle um das Coverbild
+        *      → Falls kein Cover vorhanden ist, soll "Kein Bild verfügbar"
+        *        angezeigt werden.
+        * */
+
+    </script>
+
+</body>
+
+</html>

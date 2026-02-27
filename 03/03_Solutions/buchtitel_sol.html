@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Library – Erstes Buch</title>
+</head>
+<body>
+
+    <h2>Erstes Buch</h2>
+    <p><strong>Titel:</strong> <span id="bookTitle">Lade...</span></p>
+    <p><strong>Autor:</strong> <span id="bookAuthor">Lade...</span></p>
+
+    <script>
+        fetch('https://openlibrary.org/subjects/web_programming.json?limit=15')
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data); // JSON analysieren
+
+                // Array mit Büchern: data.works
+
+                const firstBook = data.works[0];
+
+                // Titel anzeigen
+                document.getElementById("bookTitle").innerText = firstBook.title;
+
+                // Ersten Autor anzeigen
+                document.getElementById("bookAuthor").innerText =
+                    firstBook.authors[0].name;
+
+            })
+            .catch(error => {
+                console.log("Fehler:", error);
+            });
+    </script>
+
+</body>
+</html>
