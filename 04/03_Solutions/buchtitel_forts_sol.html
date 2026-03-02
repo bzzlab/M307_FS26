@@ -44,10 +44,9 @@
     <h1>Informatik Fachliteratur</h1>
     <p>Datenquelle: Open Library API (Subject: Web Programming)</p>
 
-    <!-- Optional: URL dynamisch erstellen durch Benutzereingabe 
+    <!-- Optional: URL dynamisch erstellen durch Benutzereingabe -->
     <input type="text" id="subjectInput" placeholder="Thema eingeben">
     <button onclick="loadBooks()">Laden</button>
-    -->
 
     <table id="bookTable">
       <thead>
@@ -65,10 +64,10 @@
 
   <script>
     function loadBooks() {
-      // Wir suchen nach dem Subject "web_programming"
+      /* Wir suchen nach dem Subject "web_programming"
       const url = 'https://openlibrary.org/subjects/web_programming.json?limit=15';
+      */
 
-      /* 
       // URL dynamisch erstellen durch Benutzereingabe
       const subject =
         document.getElementById("subjectInput").value;
@@ -95,6 +94,7 @@
       const tableBody = document.querySelector('#bookTable tbody');
       tableBody.innerHTML = ''; 
 
+      // Erstelle für jedes Buch eine neue Zeile mit Titel, Autor und Erscheinungsjahr
       books.forEach(book => {
         const row = document.createElement('tr');
 
