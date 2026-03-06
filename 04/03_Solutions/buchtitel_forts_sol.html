@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Informatik Bücher - Open Library API</title>
+  <title>Bücher - Open Library API</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -41,8 +41,8 @@
 </head>
 <body>
   <div class="container">
-    <h1>Informatik Fachliteratur</h1>
-    <p>Datenquelle: Open Library API (Subject: Web Programming)</p>
+    <h1>Fachliteratur</h1>
+    <p>Datenquelle: Open Library API</p>
 
     <!-- Optional: URL dynamisch erstellen durch Benutzereingabe -->
     <input type="text" id="subjectInput" placeholder="Thema eingeben">
@@ -58,6 +58,7 @@
         </tr>
       </thead>
       <tbody>
+
         </tbody>
     </table>
   </div>
@@ -76,7 +77,6 @@
         "https://openlibrary.org/subjects/"
         + subject +
         ".json?limit=15";
-      */
 
       fetch(url)
         .then(response => response.json())
@@ -94,7 +94,7 @@
       const tableBody = document.querySelector('#bookTable tbody');
       tableBody.innerHTML = ''; 
 
-      // Erstelle für jedes Buch eine neue Zeile mit Titel, Autor und Erscheinungsjahr
+      // Erstelle für jedes Buch eine neue Zeile mit Titel, Autor, Erscheinungsjahr und Cover
       books.forEach(book => {
         const row = document.createElement('tr');
 
